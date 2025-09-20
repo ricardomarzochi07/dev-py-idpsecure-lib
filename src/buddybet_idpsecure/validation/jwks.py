@@ -1,7 +1,6 @@
 import requests
 import time
-from jose import jwk
-from .core.environment_config import AppConfig
+from buddybet_idpsecure.core.environment_config import AppConfig
 from buddybet_logmon_common.logger import get_logger
 
 

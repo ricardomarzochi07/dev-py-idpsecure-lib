@@ -1,13 +1,13 @@
-from jose import jwt, jwk, ExpiredSignatureError
+from jose import jwt, ExpiredSignatureError
 from jose.exceptions import JWTClaimsError, JWTError
 from datetime import datetime, timezone
-from .core.environment_config import AppConfig
-from .jwks_cache import JWKSCache
+from buddybet_idpsecure.core.environment_config import AppConfig
 from .exceptions import *
-from .core.idp_constants import IdpConstants
+from buddybet_idpsecure.core.idp_constants import IdpConstants
 from buddybet_logmon_common.logger import get_logger
 
-from .user_claims import UserClaims
+from buddybet_idpsecure.model.user_claims import UserClaims
+from .jwks import JWKSCache
 
 
 class TokenValidator:
@@ -58,4 +58,12 @@ class TokenValidator:
             self.logger.error(f"Token not valid yet", exc_info=True)
             raise InvalidNotBefore("Token not valid yet.")
 
+        if claims_dict.get("scope"):
+            scopes = claims_dict.get("scope")
+            scopes_list = scopes.split()
+        else:
+            scopes_list = []
+
+        claims_dict["scope"] = scopes_list
+        claims_dict["token"] = token
         return UserClaims(**claims_dict)

@@ -1,6 +1,6 @@
 [project]
 name = "buddybet_idpsecure"
-version = "0.1.0"
+version = "1.0.2"
 description = "Secure in validate JWT Token"
 authors = [
     {name = "ricardomarzochi07",email = "ricardomarzochi@gmail.com"}
@@ -30,6 +30,7 @@ build-backend = "poetry.core.masonry.api"
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.4.2"
 pyjwt = "^2.10.1"
+pytest-asyncio = "^1.2.0"
 
 [tool.setuptools.package-data]
 "buddybet_idpsecure" = ["resources/*.yaml"]
