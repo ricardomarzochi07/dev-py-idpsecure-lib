@@ -1,32 +1,38 @@
 class JWTValidationError(Exception):
     """Base class for JWT validation errors"""
-    pass
+    message_key = "invalid_token"  # default
+
+    def __init__(self, *args):
+        super().__init__(*args)
 
 
 class InvalidSignature(JWTValidationError):
-    pass
+    message_key = "invalid_signature"
 
 
 class ExpiredToken(JWTValidationError):
-    pass
+    message_key = "expired_token"
 
 
 class InvalidAudience(JWTValidationError):
-    pass
+    message_key = "invalid_audience"
 
 
 class InvalidIssuer(JWTValidationError):
-    pass
+    message_key = "invalid_issuer"
 
 
 class InvalidNotBefore(JWTValidationError):
-    pass
+    message_key = "invalid_not_before"
 
 
 class InvalidClaims(JWTValidationError):
-    pass
+    message_key = "invalid_claims"
 
 
 class InvalidToken(JWTValidationError):
-    pass
+    message_key = "invalid_token"
 
+
+class ValidatorNotInitialized(JWTValidationError):
+    message_key = "invalid_token"  # o uno específico si quieres

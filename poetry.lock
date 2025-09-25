@@ -33,6 +33,36 @@ typing_extensions = {version = ">=4.5", markers = "python_version < \"3.13\""}
 trio = ["trio (>=0.26.1)"]
 
 [[package]]
+name = "babel"
+version = "2.17.0"
+description = "Internationalization utilities"
+optional = false
+python-versions = ">=3.8"
+groups = ["main"]
+files = [
+    {file = "babel-2.17.0-py3-none-any.whl", hash = "sha256:4d0b53093fdfb4b21c92b5213dba5a1b23885afa8383709427046b21c366e5f2"},
+    {file = "babel-2.17.0.tar.gz", hash = "sha256:0c54cffb19f690cdcc52a3b50bcbf71e07a808d1c80d549f2459b9d2cf0afb9d"},
+]
+
+[package.extras]
+dev = ["backports.zoneinfo ; python_version < \"3.9\"", "freezegun (>=1.0,<2.0)", "jinja2 (>=3.0)", "pytest (>=6.0)", "pytest-cov", "pytz", "setuptools", "tzdata ; sys_platform == \"win32\""]
+
+[[package]]
+name = "buddybet-i18n"
+version = "0.4.0"
+description = "Language internationalization library"
+optional = false
+python-versions = ">=3.12"
+groups = ["main"]
+files = [
+    {file = "buddybet_i18n-0.4.0-py3-none-any.whl", hash = "sha256:cb293d1a703e9f63f6c670067f53177e95a59c7f65560ae1c875b1a8d82aac86"},
+    {file = "buddybet_i18n-0.4.0.tar.gz", hash = "sha256:aa94fd8befe7dbad467fa331ca6f66bd5d8778c490e0e73b20bcad37275905af"},
+]
+
+[package.dependencies]
+i18n = ">=0.2,<0.3"
+
+[[package]]
 name = "buddybet-logmon-common"
 version = "0.1.0"
 description = "Librería de logging en formato JSON con integración para FastAPI"
@@ -259,6 +289,21 @@ standard = ["email-validator (>=2.0.0)", "fastapi-cli[standard] (>=0.0.8)", "htt
 standard-no-fastapi-cloud-cli = ["email-validator (>=2.0.0)", "fastapi-cli[standard-no-fastapi-cloud-cli] (>=0.0.8)", "httpx (>=0.23.0)", "jinja2 (>=3.1.5)", "python-multipart (>=0.0.18)", "uvicorn[standard] (>=0.12.0)"]
 
 [[package]]
+name = "i18n"
+version = "0.2"
+description = "Simplify the development of internationalized applications"
+optional = false
+python-versions = "*"
+groups = ["main"]
+files = [
+    {file = "i18n-0.2.tar.gz", hash = "sha256:a6206172b184887c57a5a209d8be7aa5f70d36a7a66aa7506754e9e377d2fb4c"},
+]
+
+[package.dependencies]
+babel = "*"
+py = "*"
+
+[[package]]
 name = "idna"
 version = "3.10"
 description = "Internationalized Domain Names in Applications (IDNA)"
@@ -331,6 +376,18 @@ files = [
 [package.extras]
 dev = ["pre-commit", "tox"]
 testing = ["coverage", "pytest", "pytest-benchmark"]
+
+[[package]]
+name = "py"
+version = "1.11.0"
+description = "library with cross-python path, ini-parsing, io, code, log facilities"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
+groups = ["main"]
+files = [
+    {file = "py-1.11.0-py2.py3-none-any.whl", hash = "sha256:607c53218732647dff4acdfcd50cb62615cedf612e72d1724fb1a0cc6405b378"},
+    {file = "py-1.11.0.tar.gz", hash = "sha256:51c75c4126074b472f746a24399ad32f6053d1b34b68d2fa41e558e6f4a98719"},
+]
 
 [[package]]
 name = "pyasn1"
@@ -740,4 +797,4 @@ typing-extensions = ">=4.12.0"
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.12"
-content-hash = "1faa8cb7edb3bb21ea44e4e67a3d681aab94b51c716e4e7a25a77249a89795d4"
+content-hash = "8a24fd255a01e63d7a6e2780d9ae62a6307a201ffa57fddbc979c884d83bbf0a"

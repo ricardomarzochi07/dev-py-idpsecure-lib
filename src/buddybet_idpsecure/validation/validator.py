@@ -21,7 +21,7 @@ class TokenValidator:
         print("validate_token ")
         if not self.jwksCacheObj:
             self.logger.error("Validator not initialized. Call init_validator()", exc_info=True)
-            raise RuntimeError("Validator not initialized. Call init_validator()")
+            raise ValidatorNotInitialized("Validator not initialized. Call init_validator()")
 
         headers = jwt.get_unverified_header(token)
         kid = headers.get("kid")
@@ -29,7 +29,7 @@ class TokenValidator:
 
         if kid not in keys:
             self.logger.error("Invalid KID in token header.", exc_info=True)
-            raise InvalidSignature("Invalid KID in token header.")
+            raise InvalidSignature()
 
         key = keys[kid]
         try:
@@ -42,21 +42,21 @@ class TokenValidator:
             )
         except ExpiredSignatureError:
             self.logger.error("Token expired.", exc_info=True)
-            raise ExpiredToken("Token expired.")
+            raise ExpiredToken()
         except JWTClaimsError as e:
             self.logger.error(f"Invalid claims:", exc_info=True)
-            raise InvalidClaims(f"Invalid claims: {str(e)}")
+            raise InvalidClaims()
         except JWTError as e:
             self.logger.error(f"Invalid token:", exc_info=True)
-            raise InvalidToken(f"Invalid token: {str(e)}")
+            raise InvalidToken()
 
         now = datetime.now(timezone.utc).timestamp()
         if "exp" in claims_dict and claims_dict["exp"] < now:
             self.logger.error(f"Token expired", exc_info=True)
-            raise ExpiredToken("Token expired.")
+            raise ExpiredToken()
         if "nbf" in claims_dict and claims_dict["nbf"] > now:
             self.logger.error(f"Token not valid yet", exc_info=True)
-            raise InvalidNotBefore("Token not valid yet.")
+            raise InvalidNotBefore()
 
         if claims_dict.get("scope"):
             scopes = claims_dict.get("scope")
