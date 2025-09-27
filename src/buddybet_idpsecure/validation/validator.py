@@ -18,10 +18,10 @@ class TokenValidator:
         self.jwksCacheObj = JWKSCache(config)
 
     def validate_token(self, token: str):
-        print("validate_token ")
+
         if not self.jwksCacheObj:
             self.logger.error("Validator not initialized. Call init_validator()", exc_info=True)
-            raise ValidatorNotInitialized("Validator not initialized. Call init_validator()")
+            raise ValidatorNotInitialized()
 
         headers = jwt.get_unverified_header(token)
         kid = headers.get("kid")

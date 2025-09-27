@@ -5,8 +5,6 @@ from buddybet_idpsecure.validation.validator import TokenValidator
 from buddybet_idpsecure.validation.exceptions import JWTValidationError
 from buddybet_idpsecure.core.environment_config import AppConfig
 from buddybet_idpsecure.core.settings_config import load_config
-from buddybet_i18n.i18n_service import I18nService
-from buddybet_idpsecure.core.i18n_config import get_i18n
 
 
 class FastAPIAuthorization:
@@ -14,15 +12,13 @@ class FastAPIAuthorization:
         self.bearer = HTTPBearer()
 
     async def __call__(self,
-                       i18n: I18nService = Depends(get_i18n),
                        credentials: HTTPAuthorizationCredentials = Depends(HTTPBearer()),
                        config: AppConfig = Depends(load_config)) -> UserClaims:
         try:
             validator = TokenValidator(config)
             return validator.validate_token(credentials.credentials)
         except JWTValidationError as e:
-            message = i18n.gettext(e.message_key)
             raise HTTPException(
                 status_code=401,
-                detail={"error": e.__class__.__name__, "message": message}
+                detail={"error": e.__class__.__name__, "message": e.message_key}
             )
