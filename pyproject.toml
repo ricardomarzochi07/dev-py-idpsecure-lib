@@ -1,6 +1,6 @@
 [project]
 name = "buddybet_idpsecure"
-version = "1.0.6"
+version = "1.0.7"
 description = "Secure in validate JWT Token"
 authors = [
     {name = "ricardomarzochi07",email = "ricardomarzochi@gmail.com"}

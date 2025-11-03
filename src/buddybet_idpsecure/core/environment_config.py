@@ -2,10 +2,12 @@ from pydantic import BaseModel
 
 
 class AppConfigEnvironment(BaseModel):
-    idp_certificates_url: str
+    idp_jwks_uri: str
+    idp_openid_uri: str
     ttl: int
-    expected_audience: str
     issuer: str
+    algorithm: str
+    audience_signin: str
 
 
 class AppConfig(BaseModel):

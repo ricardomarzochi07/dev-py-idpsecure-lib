@@ -16,7 +16,7 @@ class TransactionAuthorization:
             config = load_config()
         try:
             validator = TokenValidator(config)
-            return validator.validate_token(self.token)
+            return validator.validate_access_token(self.token)
         except JWTValidationError as e:
             raise HTTPException(
                 status_code=401,
