@@ -16,7 +16,7 @@ class FastAPIAuthorization:
                        config: AppConfig = Depends(load_config)) -> UserClaims:
         try:
             validator = TokenValidator(config)
-            return validator.validate_token(credentials.credentials)
+            return validator.validate_access_token(credentials.credentials)
         except JWTValidationError as e:
             raise HTTPException(
                 status_code=401,
